@@ -1,11 +1,28 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
+  const navigate = useNavigate();
+  
+  // Determines if user is logged in (simulated for this example)
+  const isLoggedIn = false; // In a real app, would check auth state here
+  
+  useEffect(() => {
+    // Redirect to dashboard or login
+    if (isLoggedIn) {
+      navigate("/");
+    } else {
+      navigate("/auth/login");
+    }
+  }, [navigate, isLoggedIn]);
+
+  // This is just a fallback while redirecting
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex items-center justify-center bg-black text-white">
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+        <h1 className="text-4xl font-bold mb-4">Carregando...</h1>
+        <div className="w-16 h-16 border-t-4 border-red-600 border-solid rounded-full animate-spin mx-auto"></div>
       </div>
     </div>
   );

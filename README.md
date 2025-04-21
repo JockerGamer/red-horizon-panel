@@ -1,73 +1,134 @@
-# Welcome to your Lovable project
+# GameHost - Sistema de Gerenciamento de Servidores de Jogos
 
-## Project info
+Um dashboard completo para venda e gerenciamento de servidores de jogos (MTA, SAMP, Minecraft) com integração MercadoPago e Pterodactyl.
 
-**URL**: https://lovable.dev/projects/2827ec99-619a-483a-9ab8-b94f838af9a8
+![GameHost Dashboard](https://via.placeholder.com/1200x600/ea384c/FFFFFF?text=GameHost+Dashboard)
 
-## How can I edit this code?
+## Funcionalidades
 
-There are several ways of editing your application.
+O GameHost oferece um sistema abrangente com:
 
-**Use Lovable**
+### 🔐 Autenticação
+- Login/cadastro com e-mail + senha
+- JWT com controle de role (`admin` ou `cliente`)
+- Armazenamento seguro de tokens com expiração
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/2827ec99-619a-483a-9ab8-b94f838af9a8) and start prompting.
+### 💳 Gestão de Saldo
+- Adição de fundos via MercadoPago
+- Confirmação automática de pagamentos
+- Histórico completo de transações
 
-Changes made via Lovable will be committed automatically to this repo.
+### 🛒 Loja de Servidores
+- Compra de servidores de MTA, SAMP e Minecraft
+- Integração automática com Pterodactyl
+- Configuração personalizada de recursos
 
-**Use your preferred IDE**
+### ⚙️ Gerenciamento de Produtos
+- Painel de controle para cada servidor
+- Status em tempo real (CPU, RAM, Disco)
+- Opções de upgrade/downgrade e renovação automática
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 📩 Sistema de Suporte
+- Abertura e gestão de tickets
+- Anexos e categorização
+- Interface de chat para comunicação
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 👨‍💼 Painel Administrativo
+- Gestão completa de usuários e produtos
+- Logs de ações e visualização de métricas
+- Ferramentas administrativas avançadas
 
-Follow these steps:
+## Tecnologias Utilizadas
+
+### Front-end
+- React com TypeScript
+- TailwindCSS para estilização
+- shadcn/ui para componentes
+- Tema escuro por padrão com cores vermelho/preto
+
+### Back-end (a ser configurado)
+- API RESTful (Node.js recomendado)
+- PostgreSQL ou MongoDB para banco de dados
+- Integrações:
+  - MercadoPago API
+  - Pterodactyl API
+  - Sistema de autenticação JWT
+
+## Configuração do Projeto
+
+### Pré-requisitos
+- Node.js 16+ e npm
+- Conta no MercadoPago (para processamento de pagamentos)
+- Acesso a um servidor Pterodactyl
+
+### Instalação
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Clone o repositório
+git clone <URL_DO_REPOSITORIO>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Navegue até a pasta do projeto
+cd gamehost
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Instale as dependências
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Inicie o servidor de desenvolvimento
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Guia de Configuração
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Configurando o MercadoPago
 
-**Use GitHub Codespaces**
+1. Crie uma conta em [MercadoPago Developers](https://developers.mercadopago.com/)
+2. Obtenha suas credenciais de API (Public Key e Access Token)
+3. Configure as credenciais no arquivo de ambiente (.env)
+4. Defina a URL de callback para receber notificações de pagamentos
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Configurando o Pterodactyl
 
-## What technologies are used for this project?
+1. Configure seu servidor Pterodactyl seguindo a [documentação oficial](https://pterodactyl.io/)
+2. Gere uma API key com permissões adequadas
+3. Configure a URL do servidor e a API key no arquivo de ambiente
 
-This project is built with:
+### Ativando o Modo Admin
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+1. No banco de dados, defina o campo `role` do usuário para `admin`
+2. Faça logout e login novamente para acessar o painel administrativo
+3. O painel admin estará disponível com funcionalidades extras
 
-## How can I deploy this project?
+## Estrutura do Projeto
 
-Simply open [Lovable](https://lovable.dev/projects/2827ec99-619a-483a-9ab8-b94f838af9a8) and click on Share -> Publish.
+```
+/src
+  /components      # Componentes reutilizáveis
+    /layout        # Componentes de layout (Sidebar, Navbar)
+    /ui            # Componentes de UI (buttons, cards, etc)
+  /hooks           # Hooks personalizados
+  /lib             # Utilidades e funções auxiliares
+  /pages           # Páginas da aplicação
+    /auth          # Páginas de autenticação
+    /admin         # Páginas do painel administrativo
+  /services        # Serviços de API e integrações
+  /store           # Estado global (context, redux, etc)
+  /types           # Definições de tipos TypeScript
+```
 
-## Can I connect a custom domain to my Lovable project?
+## Contribuição
 
-Yes, you can!
+Contribuições são bem-vindas! Por favor:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+1. Crie um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-funcionalidade`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
+4. Push para a branch (`git push origin feature/nova-funcionalidade`)
+5. Abra um Pull Request
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Licença
+
+Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE para detalhes.
+
+---
+
+Desenvolvido com ❤️ por [Seu Nome/Empresa]
