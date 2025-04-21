@@ -14,6 +14,7 @@ import Servers from "./pages/Servers";
 import Transactions from "./pages/Transactions";
 import Settings from "./pages/Settings";
 import Tickets from "./pages/Tickets";
+import AddBalance from "./pages/AddBalance";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +50,17 @@ const App = () => {
                 <ProtectedRoute>
                   <DashboardLayout>
                     <Dashboard />
+                  </DashboardLayout>
+                </ProtectedRoute>
+              }
+            />
+            {/* Adicionar Saldo */}
+            <Route
+              path="/saldo"
+              element={
+                <ProtectedRoute>
+                  <DashboardLayout>
+                    <AddBalance />
                   </DashboardLayout>
                 </ProtectedRoute>
               }
