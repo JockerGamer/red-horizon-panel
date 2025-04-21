@@ -16,6 +16,8 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/lib/supabaseClient";
+import { useNavigate } from "react-router-dom";
 
 interface SidebarLinkProps {
   to: string;
@@ -114,7 +116,10 @@ export function Sidebar() {
             </>
           )}
           <button
-            onClick={() => {/* Logout logic */}}
+            onClick={async () => {
+              await supabase.auth.signOut();
+              navigate("/auth/login");
+            }}
             className={cn(
               "flex items-center text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-500",
               collapsed && "mx-auto"
