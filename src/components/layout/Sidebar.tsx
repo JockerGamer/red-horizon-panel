@@ -48,6 +48,7 @@ const SidebarLink = ({ to, icon: Icon, label, isActive, isCollapsed }: SidebarLi
 export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const isLinkActive = (path: string) => {
     return location.pathname === path || 
