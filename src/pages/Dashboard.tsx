@@ -3,10 +3,25 @@ import { CreditCard, Server, ShoppingCart, LifeBuoy, ArrowUpRight, AlertCircle }
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "@/lib/supabaseClient";
+
 
 export default function Dashboard() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) {
+        navigate("/auth/login");
+      } else {
+        setLoading(false);
+      }
+    });
+  }, []);
+
 
   // Dummy server data for demonstration
   const servers = [
@@ -29,6 +44,10 @@ export default function Dashboard() {
       disk: 32,
     },
   ];
+
+  if (loading) { 
+    return <div className="p-8 text-center text-gray-600 dark:text-gray-400">Carregando dashboard...</div>;
+  }
 
   return (
     <div className="space-y-6">
