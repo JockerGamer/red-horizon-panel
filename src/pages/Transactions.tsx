@@ -1,0 +1,14 @@
+
+import { CreditCard } from "lucide-react";
+
+export default function Transactions() {
+  return (
+    <div className="flex flex-col items-center gap-4 mt-10">
+      <CreditCard className="w-12 h-12 text-red-500" />
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Transações</h2>
+      <p className="text-gray-600 dark:text-gray-400 text-center max-w-md">
+        Em breve: acompanhe todas as transações realizadas com seu saldo e compras de produtos diretamente aqui.
+      </p>
+    </div>
+  );
+}

@@ -9,6 +9,11 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
 import NotFound from "./pages/NotFound";
+import Store from "./pages/Store";
+import Servers from "./pages/Servers";
+import Transactions from "./pages/Transactions";
+import Settings from "./pages/Settings";
+import Tickets from "./pages/Tickets";
 
 const queryClient = new QueryClient();
 
@@ -48,30 +53,65 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
-          
-          {/* Additional routes would go here:
-          <Route
-            path="/servers"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout>
-                  <Servers />
-                </DashboardLayout>
-              </ProtectedRoute>
-            }
-          />
-          */}
-          
-          {/* Authentication routes */}
-          <Route path="/auth/login" element={<Login />} />
-          <Route path="/auth/signup" element={<Signup />} />
-          
-          {/* Catch-all route */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+            <Route
+              path="/store"
+              element={
+                <ProtectedRoute>
+                  <DashboardLayout>
+                    <Store />
+                  </DashboardLayout>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/servers"
+              element={
+                <ProtectedRoute>
+                  <DashboardLayout>
+                    <Servers />
+                  </DashboardLayout>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/transactions"
+              element={
+                <ProtectedRoute>
+                  <DashboardLayout>
+                    <Transactions />
+                  </DashboardLayout>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/settings"
+              element={
+                <ProtectedRoute>
+                  <DashboardLayout>
+                    <Settings />
+                  </DashboardLayout>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/tickets"
+              element={
+                <ProtectedRoute>
+                  <DashboardLayout>
+                    <Tickets />
+                  </DashboardLayout>
+                </ProtectedRoute>
+              }
+            />
+            {/* Authentication routes */}
+            <Route path="/auth/login" element={<Login />} />
+            <Route path="/auth/signup" element={<Signup />} />
+            {/* Catch-all route */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
   );
 };
 
