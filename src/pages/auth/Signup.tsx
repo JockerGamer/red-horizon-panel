@@ -5,6 +5,8 @@ import { Eye, EyeOff, Server } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { supabase } from "@/lib/supabaseClient"; 
+
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
@@ -23,26 +25,34 @@ export default function Signup() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Simple validation
+  
     if (formData.password !== formData.confirmPassword) {
       alert("As senhas não coincidem");
       return;
     }
-    
+  
     setIsLoading(true);
-    
-    // Simulate API call
-    try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      // Navigate to dashboard on success
+  
+    const { data, error } = await supabase.auth.signUp({
+      email: formData.email,
+      password: formData.password,
+      options: {
+        data: {
+          full_name: formData.name,
+        },
+      },
+    });
+  
+    if (error) {
+      alert("Erro: " + error.message);
+    } else {
+      alert("Conta criada! Verifique seu email.");
       window.location.href = "/";
-    } catch (error) {
-      console.error("Signup failed:", error);
-    } finally {
-      setIsLoading(false);
     }
+  
+    setIsLoading(false);
   };
+
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-black p-4">
